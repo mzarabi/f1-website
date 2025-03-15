@@ -1,7 +1,7 @@
 import { DriversResponse } from '../types/driver';
 import { ConstructorStandingsResponse } from '../types/constructorStandings';
 
-const API_BASE_URL = 'http://api.jolpi.ca/ergast/f1';
+const API_BASE_URL = 'https://api.jolpi.ca/ergast/f1';
 
 export const getDriverList = async () => {
   const response = await fetch(`${API_BASE_URL}/2025/drivers/`);
