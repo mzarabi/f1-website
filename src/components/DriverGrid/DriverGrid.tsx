@@ -3,12 +3,13 @@ import { useDrivers } from '../../hooks/useDrivers';
 import LazyImage from '../common/LazyImage';
 import { Skeleton, Grid } from '@mui/material';
 import styles from './DriverGrid.module.css';
+import driverPhotos from '../../data/driverPhotos';
 
 const DriverGrid: React.FC = () => {
   const { data: drivers, isLoading, error } = useDrivers();
 
   const getDriverImage = (driverId: string) => {
-    return new URL(`../../assets/drivers/${driverId}.jpg`, import.meta.url).href;
+    return driverPhotos[driverId] || '';
   };
 
   if (isLoading) {

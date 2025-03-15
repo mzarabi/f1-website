@@ -38,7 +38,15 @@ const LazyImage: React.FC<LazyImageProps> = ({
           width={width}
           height={height}
           animation="wave"
-          style={{ ...style, borderRadius: '8px' }}
+          style={{ 
+            ...style, 
+            borderRadius: '8px',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+          }}
         />
       )}
       <img
@@ -48,7 +56,6 @@ const LazyImage: React.FC<LazyImageProps> = ({
         className={className}
         style={{
           ...style,
-          display: isLoading ? 'none' : 'block',
           width: width,
           height: height,
           objectFit: 'cover',
