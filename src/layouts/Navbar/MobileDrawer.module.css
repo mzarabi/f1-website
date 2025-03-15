@@ -1,0 +1,15 @@
+.drawer {
+    width: 250px;
+    height: 100%;
+    background-color: #232427;
+    color: white;
+}
+
+.drawerList {
+    margin-top: 40px;
+}
+
+.drawerItem {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}

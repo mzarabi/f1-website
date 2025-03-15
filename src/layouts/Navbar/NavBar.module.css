@@ -1,0 +1,64 @@
+.appBar {
+    background-color: #b40600 !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    width: 100%;
+    min-height: 64px !important;
+}
+
+.desktopLogo {
+    margin-left: 16px;
+    display: none;
+}
+
+.logoImage {
+    height: 90px;
+    width: auto;
+    padding: 8px 0;
+}
+
+.mobileLogoImage {
+    height: 50px;
+    width: auto;
+    padding: 6px 0;
+}
+
+.mobileMenuContainer {
+    display: flex;
+}
+
+.mobileLogo {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.desktopNavContainer {
+    flex-grow: 1;
+    display: none;
+    justify-content: flex-end;
+    margin-right: 16px;
+}
+
+/* Media queries */
+@media (min-width: 600px) {
+    .desktopLogo {
+        display: flex !important;
+    }
+
+    .mobileMenuContainer {
+        display: none !important;
+    }
+
+    .mobileLogo {
+        display: none !important;
+    }
+
+    .desktopNavContainer {
+        display: flex !important;
+    }
+}
