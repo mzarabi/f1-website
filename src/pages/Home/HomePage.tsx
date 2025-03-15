@@ -7,6 +7,7 @@ import { useDriverStandings } from '../../hooks/useDriverStandings';
 import { useConstructorStandings } from '../../hooks/useConstructorStandings';
 import { DriverStanding } from '../../types/driverStandings';
 import { ConstructorStanding } from '../../types/constructorStandings';
+import F1News from '../../components/F1News/F1News';
 import styles from './HomePage.module.css';
 
 const HomePage: React.FC = () => {
@@ -41,16 +42,42 @@ const HomePage: React.FC = () => {
     <div className={styles.homePage}>
       <Box className={styles.hero}>
         <Container maxWidth="xl">
-          <Typography variant="h1" className={styles.heroTitle}>
-            Formula 1 {currentYear}
-          </Typography>
-          <Typography variant="h2" className={styles.heroSubtitle}>
-            Live Standings and Statistics
-          </Typography>
+          <Grid container spacing={4} alignItems="center">
+            <Grid item xs={12} md={6}>
+              <Box sx={{ mb: { xs: 4, md: 0 } }}>
+                <Typography variant="h1" className={styles.heroTitle}>
+                  Formula 1
+                </Typography>
+                <Typography variant="h2" className={styles.heroSubtitle}>
+                  Live Standings and Statistics
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ 
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '12px',
+                p: 3
+              }}>
+                <Typography variant="h5" sx={{ 
+                  mb: 2, 
+                  color: '#ffffff',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em'
+                }}>
+                  Latest F1 News
+                </Typography>
+                <F1News />
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
 
       <Container maxWidth="xl" className={styles.content}>
+        {/* Quick Links Section */}
         <Grid container spacing={{ xs: 3, md: 4 }} className={styles.quickLinks}>
           {quickLinks.map((link) => (
             <Grid item xs={12} md={4} key={link.path}>
@@ -70,6 +97,7 @@ const HomePage: React.FC = () => {
           ))}
         </Grid>
 
+        {/* Standings Section */}
         <Grid container spacing={{ xs: 3, md: 4 }} className={styles.standings}>
           <Grid item xs={12} md={6}>
             <Paper className={styles.standingsCard}>

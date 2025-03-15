@@ -1,0 +1,84 @@
+.newsContainer {
+  width: 100%;
+}
+
+.newsLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.newsLink:hover {
+  text-decoration: none;
+  transform: translateX(8px);
+}
+
+.newsCard {
+  padding: 1.25rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.newsCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #ff0000, #b40600);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.newsLink:hover .newsCard {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.newsLink:hover .newsCard::before {
+  opacity: 1;
+}
+
+.newsTitle {
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.newsDate {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  display: block;
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.errorMessage {
+  color: #ff4444;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 68, 68, 0.1);
+  border-radius: 4px;
+  backdrop-filter: blur(5px);
+} 
