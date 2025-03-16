@@ -29,9 +29,9 @@ const DriverStandings: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {standings.map((standing) => (
-            <tr key={standing.position}>
-              <td>{standing.position}</td>
+          {standings.map((standing, index) => (
+            <tr key={standing.Driver.familyName}>
+              <td>{index + 1}</td>
               <td>{standing.Driver.familyName}</td>
               <td>{standing.Constructors[0]?.name}</td>
               <td>{standing.points}</td>
