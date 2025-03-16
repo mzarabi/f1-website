@@ -1,5 +1,6 @@
 .newsContainer {
   width: 100%;
+  gap: 0.75rem;
 }
 
 .newsLink {
@@ -16,7 +17,7 @@
 }
 
 .newsCard {
-  padding: 1.25rem;
+  padding: 1.5rem;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.05) 0%,
@@ -56,10 +57,10 @@
 
 .newsTitle {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
+  font-size: 0.9rem !important;
   line-height: 1.4;
   font-weight: 500;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem !important;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -69,7 +70,7 @@
 
 .newsDate {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 0.8rem;
+  font-size: 0.75rem !important;
   display: block;
 }
 

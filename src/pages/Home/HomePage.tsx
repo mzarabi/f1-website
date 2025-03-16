@@ -3,8 +3,10 @@ import { Box, Container, Typography, Paper, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import PersonIcon from '@mui/icons-material/Person';
+import SpeedIcon from '@mui/icons-material/Speed';
 import { useDriverStandings } from '../../hooks/useDriverStandings';
 import { useConstructorStandings } from '../../hooks/useConstructorStandings';
+import { useNextRace } from '../../hooks/useNextRace';
 import { DriverStanding } from '../../types/driverStandings';
 import { ConstructorStanding } from '../../types/constructorStandings';
 import F1News from '../../components/F1News/F1News';
@@ -14,8 +16,25 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { data: driverStandings, isLoading: isDriverLoading } = useDriverStandings();
   const { data: constructorStandings, isLoading: isConstructorLoading } = useConstructorStandings();
+  const { data: nextRace, isLoading: isRaceLoading } = useNextRace();
   
   const currentYear = new Date().getFullYear();
+
+  const formatRaceDate = (date: string, time: string) => {
+    const raceDate = new Date(`${date}T${time}`);
+    
+    const localDate = new Intl.DateTimeFormat('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    }).format(raceDate);
+
+    return localDate;
+  };
 
   const quickLinks = [
     {
@@ -42,34 +61,57 @@ const HomePage: React.FC = () => {
     <div className={styles.homePage}>
       <Box className={styles.hero}>
         <Container maxWidth="xl">
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Box sx={{ mb: { xs: 4, md: 0 } }}>
+          <Grid container spacing={4}>
+            {/* Left Section */}
+            <Grid item xs={12} md={7} className={styles.heroMainContent}>
+              <Box className={styles.heroTextContent}>
                 <Typography variant="h1" className={styles.heroTitle}>
-                  Formula 1
+                  Formula 1 <span className={styles.heroYear}>{currentYear}</span>
                 </Typography>
                 <Typography variant="h2" className={styles.heroSubtitle}>
-                  Live Standings and Statistics
+                  Championship Tracker
                 </Typography>
+                {!isDriverLoading && driverStandings && driverStandings[0] && (
+                  <Box className={styles.currentLeader}>
+                    <Typography variant="h6" className={styles.leaderLabel}>
+                      Current Championship Leader
+                    </Typography>
+                    <Typography variant="h3" className={styles.leaderName}>
+                      {driverStandings[0].Driver.givenName} {driverStandings[0].Driver.familyName}
+                    </Typography>
+                    <Typography variant="h4" className={styles.leaderPoints}>
+                      {driverStandings[0].points} Points
+                    </Typography>
+                  </Box>
+                )}
+                {!isRaceLoading && nextRace && (
+                  <Box className={styles.nextRace}>
+                    <Typography variant="h6" className={styles.raceLabel}>
+                      Next Race
+                    </Typography>
+                    <Typography variant="h3" className={styles.raceName}>
+                      {nextRace.raceName}
+                    </Typography>
+                    <Typography variant="body1" className={styles.raceLocation}>
+                      {nextRace.Circuit.Location.locality}, {nextRace.Circuit.Location.country}
+                    </Typography>
+                    <Typography variant="h4" className={styles.raceDate}>
+                      {formatRaceDate(nextRace.date, nextRace.time)}
+                    </Typography>
+                  </Box>
+                )}
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Box sx={{ 
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '12px',
-                p: 3
-              }}>
-                <Typography variant="h5" sx={{ 
-                  mb: 2, 
-                  color: '#ffffff',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em'
-                }}>
-                  Latest F1 News
-                </Typography>
-                <F1News />
+
+            {/* Right Section */}
+            <Grid item xs={12} md={5}>
+              <Box className={styles.heroNewsSection}>
+                <Paper className={styles.newsContainer}>
+                  <Typography variant="h5" className={styles.newsTitle}>
+                    Latest F1 News
+                  </Typography>
+                  <F1News />
+                </Paper>
               </Box>
             </Grid>
           </Grid>

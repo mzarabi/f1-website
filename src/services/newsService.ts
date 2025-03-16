@@ -22,7 +22,7 @@ export const getF1News = async (): Promise<NewsItem[]> => {
       link: item.querySelector('link')?.textContent || '',
       pubDate: item.querySelector('pubDate')?.textContent || '',
       description: item.querySelector('description')?.textContent || ''
-    })).slice(0, 3);
+    })).slice(0, 5);
   } catch (error) {
     console.error('Error fetching F1 news:', error);
     return [];

@@ -4,39 +4,131 @@
 }
 
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-              url('../../assets/f1-hero.jpg') center/cover no-repeat;
-  height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  padding: 2rem;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%),
+              url('../../assets/f1-hero.jpg') center/cover no-repeat fixed;
+  min-height: 90vh;
+  padding: 2rem 0;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(180, 6, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+
+.heroMainContent {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+}
+
+.heroTextContent {
+  padding: 2rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .heroTitle {
-  font-size: 4.5rem !important;
+  font-size: 4rem !important;
   font-weight: 800 !important;
-  margin-bottom: 1.5rem !important;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: -1px;
+  margin-bottom: 1rem !important;
   background: linear-gradient(90deg, #ffffff, #e0e0e0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.heroYear {
+  color: #ff1801;
+  -webkit-text-fill-color: #ff1801;
+  font-size: 3rem !important;
 }
 
 .heroSubtitle {
-  font-size: 2.2rem !important;
+  font-size: 2rem !important;
   font-weight: 400 !important;
-  opacity: 0.95;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem !important;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.currentLeader {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 24, 1, 0.1) 0%, rgba(255, 24, 1, 0.05) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 24, 1, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.leaderLabel {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 1rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem !important;
+}
+
+.leaderName {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: #ffffff;
+  margin-bottom: 0.5rem !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.leaderPoints {
+  font-size: 1.5rem !important;
+  color: #ff1801;
+  font-weight: 600 !important;
+}
+
+.heroNewsSection {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.newsContainer {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px !important;
+  padding: 2rem !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.newsTitle {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.5rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .content {
-  margin-top: -120px;
+  margin-top: 0;
   padding-bottom: 4rem;
   position: relative;
   z-index: 2;
@@ -154,13 +246,83 @@
   border-radius: 20px;
 }
 
-@media (max-width: 600px) {
+.raceName {
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  font-size: 1.3rem !important;
+  line-height: 1.4 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.raceLocation {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.raceDate {
+  color: #ff1801 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.nextRace {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.raceLabel {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.9rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem !important;
+}
+
+.raceName {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #ffffff;
+  margin-bottom: 0.5rem !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.raceLocation {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.raceDate {
+  font-size: 1.3rem !important;
+  color: #ff1801;
+  font-weight: 600 !important;
+}
+
+@media (max-width: 960px) {
+  .hero {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
   .heroTitle {
-    font-size: 2.8rem !important;
+    font-size: 3rem !important;
+  }
+
+  .heroYear {
+    font-size: 2.2rem !important;
   }
 
   .heroSubtitle {
     font-size: 1.6rem !important;
+  }
+
+  .leaderName {
+    font-size: 2rem !important;
   }
 
   .content {
@@ -169,7 +331,7 @@
   }
 
   .quickLinks {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .card {
@@ -185,5 +347,80 @@
   .standingsItem {
     padding: 1rem;
     gap: 1rem;
+  }
+
+  .heroMainContent {
+    height: auto;
+  }
+
+  .heroTextContent {
+    height: auto;
+  }
+
+  .newsContainer {
+    height: auto;
+    margin-top: 2rem;
+  }
+
+  .raceName {
+    font-size: 1.6rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 2rem 0;
+  }
+
+  .heroTextContent {
+    padding: 1.5rem;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem !important;
+  }
+
+  .heroYear {
+    font-size: 1.8rem !important;
+  }
+
+  .heroSubtitle {
+    font-size: 1.4rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .leaderName {
+    font-size: 1.8rem !important;
+  }
+
+  .leaderPoints {
+    font-size: 1.2rem !important;
+  }
+
+  .newsContainer {
+    padding: 1.5rem !important;
+  }
+
+  .quickStats {
+    margin-top: 2rem !important;
+  }
+
+  .statCard {
+    min-height: 180px;
+    padding: 2rem !important;
+    gap: 0.75rem;
+  }
+
+  .statIcon {
+    font-size: 2rem !important;
+    margin-bottom: 0.25rem;
+  }
+
+  .raceName {
+    font-size: 1.4rem !important;
+  }
+
+  .raceLocation, .raceDate {
+    font-size: 1.1rem !important;
   }
 } 

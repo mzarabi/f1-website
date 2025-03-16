@@ -24,7 +24,7 @@ const F1News: React.FC = () => {
 
   return (
     <Grid container spacing={2} className={styles.newsContainer}>
-      {news?.slice(0, 3).map((item, index) => (
+      {news?.slice(0, 4).map((item, index) => (
         <Grid item xs={12} key={index}>
           <Link
             href={item.link}
