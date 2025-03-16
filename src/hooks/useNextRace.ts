@@ -14,6 +14,11 @@ interface Circuit {
   Location: Location;
 }
 
+interface Session {
+  date: string;
+  time: string;
+}
+
 interface Race {
   season: string;
   round: string;
@@ -22,6 +27,12 @@ interface Race {
   Circuit: Circuit;
   date: string;
   time: string;
+  FirstPractice: Session;
+  SecondPractice?: Session;
+  ThirdPractice?: Session;
+  Qualifying: Session;
+  Sprint?: Session;
+  SprintQualifying?: Session;
 }
 
 interface RaceResponse {
