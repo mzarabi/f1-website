@@ -1,0 +1,156 @@
+.pageTitle {
+  color: #ffffff;
+  margin: 0rem 0 2rem !important;
+  font-weight: 700 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding-top: 0;
+}
+
+.gridItem {
+  margin-bottom: 3.5rem !important;
+}
+
+.loadingText {
+  color: #ffffff;
+  text-align: center;
+  margin-top: 4rem !important;
+}
+
+.raceCard {
+  background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(20, 20, 20, 0.95)) !important;
+  color: #ffffff !important;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3),
+              0 8px 16px rgba(180, 6, 0, 0.1),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.raceCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4),
+              0 16px 24px rgba(180, 6, 0, 0.15),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  background: linear-gradient(145deg, rgba(28, 28, 28, 0.95), rgba(22, 22, 22, 0.95)) !important;
+}
+
+.racePast {
+  opacity: 0.6;
+  filter: grayscale(40%);
+}
+
+.raceNext {
+  background: linear-gradient(145deg, rgba(35, 35, 35, 0.98), rgba(25, 25, 25, 0.98)) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+              0 8px 24px rgba(255, 0, 0, 0.2),
+              inset 0 0 0 2px rgba(255, 0, 0, 0.2);
+  transform: scale(1.02);
+}
+
+.raceFuture {
+  opacity: 0.9;
+}
+
+.nextRaceBadge {
+  position: absolute;
+  right: -2.2rem;
+  background: #ff1801;
+  color: white;
+  padding: 0.25rem 2rem;
+  transform: rotate(45deg);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.raceName {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: #ff1801;
+  margin-bottom: 0.75rem !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.circuitName {
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  color: #ffffff;
+  margin-bottom: 0.5rem !important;
+}
+
+.location {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 1rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.sessionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.sessionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sessionLabel {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sessionTime {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 960px) {
+  .pageTitle {
+    margin: 1rem 0 1.5rem !important;
+    font-size: 2.5rem !important;
+  }
+
+  .raceCard {
+    padding: 1.25rem;
+  }
+
+  .raceName {
+    font-size: 1.6rem !important;
+  }
+
+  .circuitName {
+    font-size: 1.1rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .pageTitle {
+    margin: 0.75rem 0 1rem !important;
+    font-size: 2rem !important;
+  }
+
+  .raceCard {
+    padding: 1rem;
+  }
+
+  .raceName {
+    font-size: 1.4rem !important;
+  }
+
+  .circuitName {
+    font-size: 1rem !important;
+  }
+} 

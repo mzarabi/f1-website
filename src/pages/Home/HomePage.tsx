@@ -39,12 +39,6 @@ const HomePage: React.FC = () => {
 
   const quickLinks = [
     {
-      title: 'Drivers',
-      description: 'View all F1 drivers and their profiles',
-      icon: <PersonIcon className={styles.cardIcon} />,
-      path: '/drivers'
-    },
-    {
       title: 'Driver Standings',
       description: `${currentYear} Driver Championship standings`,
       icon: <EmojiEventsIcon className={styles.cardIcon} />,
@@ -76,7 +70,7 @@ const HomePage: React.FC = () => {
                 {!isDriverLoading && driverStandings && driverStandings[0] && (
                   <Box className={styles.currentLeader}>
                     <Typography variant="h6" className={styles.leaderLabel}>
-                      Current Championship Leader
+                      Driver Championship Leader
                     </Typography>
                     <Typography variant="h3" className={styles.leaderName}>
                       {driverStandings[0].Driver.givenName} {driverStandings[0].Driver.familyName}
@@ -111,44 +105,6 @@ const HomePage: React.FC = () => {
                       {nextRace.Circuit.Location.locality}, {nextRace.Circuit.Location.country}
                     </Typography>
                     <Box className={styles.raceTimes}>
-                      <Box>
-                        <Typography variant="body2" className={styles.timeLabel}>
-                          Race Start
-                        </Typography>
-                        <Typography variant="h4" className={styles.raceDate}>
-                          {formatRaceDate(nextRace.date, nextRace.time)}
-                        </Typography>
-                      </Box>
-                      {nextRace.Sprint && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Sprint Race
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.Sprint.date, nextRace.Sprint.time)}
-                          </Typography>
-                        </Box>
-                      )}
-                      {nextRace.Qualifying && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Qualifying
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.Qualifying.date, nextRace.Qualifying.time)}
-                          </Typography>
-                        </Box>
-                      )}
-                      {nextRace.SprintQualifying && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Sprint Qualifying
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.SprintQualifying.date, nextRace.SprintQualifying.time)}
-                          </Typography>
-                        </Box>
-                      )}
                       {nextRace.FirstPractice && (
                         <Box>
                           <Typography variant="body2" className={styles.timeLabel}>
@@ -159,6 +115,7 @@ const HomePage: React.FC = () => {
                           </Typography>
                         </Box>
                       )}
+
                       {nextRace.SecondPractice && (
                         <Box>
                           <Typography variant="body2" className={styles.timeLabel}>
@@ -169,6 +126,7 @@ const HomePage: React.FC = () => {
                           </Typography>
                         </Box>
                       )}
+
                       {nextRace.ThirdPractice && (
                         <Box>
                           <Typography variant="body2" className={styles.timeLabel}>
@@ -179,6 +137,48 @@ const HomePage: React.FC = () => {
                           </Typography>
                         </Box>
                       )}
+
+                      {nextRace.SprintQualifying && (
+                        <Box>
+                          <Typography variant="body2" className={styles.timeLabel}>
+                            Sprint Qualifying
+                          </Typography>
+                          <Typography variant="h4" className={styles.raceDate}>
+                            {formatRaceDate(nextRace.SprintQualifying.date, nextRace.SprintQualifying.time)}
+                          </Typography>
+                        </Box>
+                      )}
+
+                      {nextRace.Sprint && (
+                        <Box>
+                          <Typography variant="body2" className={styles.timeLabel}>
+                            Sprint
+                          </Typography>
+                          <Typography variant="h4" className={styles.raceDate}>
+                            {formatRaceDate(nextRace.Sprint.date, nextRace.Sprint.time)}
+                          </Typography>
+                        </Box>
+                      )}
+
+                      {nextRace.Qualifying && (
+                        <Box>
+                          <Typography variant="body2" className={styles.timeLabel}>
+                            Qualifying
+                          </Typography>
+                          <Typography variant="h4" className={styles.raceDate}>
+                            {formatRaceDate(nextRace.Qualifying.date, nextRace.Qualifying.time)}
+                          </Typography>
+                        </Box>
+                      )}
+
+                      <Box>
+                        <Typography variant="body2" className={styles.timeLabel}>
+                          Race
+                        </Typography>
+                        <Typography variant="h4" className={styles.raceDate}>
+                          {formatRaceDate(nextRace.date, nextRace.time)}
+                        </Typography>
+                      </Box>
                     </Box>
                   </Box>
                 )}
@@ -221,7 +221,7 @@ const HomePage: React.FC = () => {
       <Container maxWidth="xl" className={styles.content}>
         <Grid container spacing={{ xs: 3, md: 4 }} className={styles.quickLinks}>
           {quickLinks.map((link) => (
-            <Grid item xs={12} md={4} key={link.path}>
+            <Grid item xs={12} md={6} key={link.path}>
               <Paper 
                 className={styles.card}
                 onClick={() => handleNavigation(link.path)}

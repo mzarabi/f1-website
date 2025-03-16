@@ -1,60 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-
-interface Location {
-  lat: string;
-  long: string;
-  locality: string;
-  country: string;
-}
-
-interface Circuit {
-  circuitId: string;
-  url: string;
-  circuitName: string;
-  Location: Location;
-}
-
-interface Session {
-  date: string;
-  time: string;
-}
-
-interface Race {
-  season: string;
-  round: string;
-  url: string;
-  raceName: string;
-  Circuit: Circuit;
-  date: string;
-  time: string;
-  FirstPractice: Session;
-  SecondPractice?: Session;
-  ThirdPractice?: Session;
-  Qualifying: Session;
-  Sprint?: Session;
-  SprintQualifying?: Session;
-}
-
-interface RaceResponse {
-  MRData: {
-    RaceTable: {
-      season: string;
-      Races: Race[];
-    };
-  };
-}
-
-const fetchRaces = async () => {
-  const response = await fetch('https://api.jolpi.ca/ergast/f1/2025/races/');
-  const data: RaceResponse = await response.json();
-  return data.MRData.RaceTable.Races;
-};
+import { fetchRaces, Race } from '../services/raceService';
 
 export const useNextRace = () => {
   return useQuery({
     queryKey: ['races'],
     queryFn: fetchRaces,
-    select: (races) => {
+    select: (races: Race[]) => {
       const now = new Date();
       return races.find(race => {
         const raceDate = new Date(`${race.date}T${race.time}`);

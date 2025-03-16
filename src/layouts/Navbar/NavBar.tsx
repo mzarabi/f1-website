@@ -16,6 +16,7 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
+  { label: 'Schedule', path: '/schedule' },
   { label: 'Drivers', path: '/drivers' },
   { label: 'Constructors', path: '/constructors' },
 ];
