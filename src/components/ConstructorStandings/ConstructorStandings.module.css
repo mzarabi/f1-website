@@ -5,6 +5,18 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.loadingText,
+.errorText {
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.errorText {
+  color: #ff1801;
+}
+
 .table {
   width: 100%;
   max-width: 800px;
@@ -22,6 +34,15 @@
   padding: 1rem;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.teamName {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+tr:hover .teamName {
+  transform: translateX(4px);
 }
 
 @media (max-width: 600px) {
