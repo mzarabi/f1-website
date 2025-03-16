@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CircularProgress, Box } from '@mui/material';
 import NavBar from './layouts/Navbar/NavBar';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import './index.css';
 
 // Lazy load components
@@ -22,9 +23,10 @@ const LoadingFallback = () => (
   </Box>
 );
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <NavBar />
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
@@ -37,6 +39,6 @@ function App() {
       </Suspense>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

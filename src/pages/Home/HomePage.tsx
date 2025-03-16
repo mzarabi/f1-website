@@ -58,6 +58,11 @@ const HomePage: React.FC = () => {
     }
   ];
 
+  const handleNavigation = (path: string) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
+
   return (
     <div className={sharedStyles.pageBackground}>
       <Box className={styles.hero}>
@@ -123,7 +128,7 @@ const HomePage: React.FC = () => {
             <Grid item xs={12} md={4} key={link.path}>
               <Paper 
                 className={styles.card}
-                onClick={() => navigate(link.path)}
+                onClick={() => handleNavigation(link.path)}
               >
                 {link.icon}
                 <Typography variant="h6" className={styles.cardTitle}>
