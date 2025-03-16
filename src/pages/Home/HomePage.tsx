@@ -5,6 +5,7 @@ import { useDriverStandings } from '../../hooks/useDriverStandings';
 import { useConstructorStandings } from '../../hooks/useConstructorStandings';
 import { useNextRace } from '../../hooks/useNextRace';
 import { useRaceResults } from '../../hooks/useRaceResults';
+import { teamColors } from '../../utils/teamColors';
 import styles from './HomePage.module.css';
 import sharedStyles from '../../styles/shared.module.css';
 
@@ -38,6 +39,13 @@ const HomePage: React.FC = () => {
     navigate(path);
   };
 
+  // Helper function to convert hex color to RGB
+  const hexToRgb = (hex: string): string => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (!result) return '255, 255, 255';
+    return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`;
+  };
+
   return (
     <div className={sharedStyles.pageBackground}>
       <Box className={styles.hero}>
@@ -49,27 +57,51 @@ const HomePage: React.FC = () => {
                   Formula 1 <span className={styles.heroYear}>{currentYear}</span>
                 </Typography>
                 {!isDriverLoading && driverStandings && driverStandings[0] && (
-                  <Box className={styles.currentLeader}>
+                  <Box 
+                    className={styles.currentLeader}
+                    style={{
+                      background: `linear-gradient(135deg, rgba(${hexToRgb(teamColors[driverStandings[0].Constructors[0]?.name] || '#ffffff')}, 0.15) 0%, rgba(${hexToRgb(teamColors[driverStandings[0].Constructors[0]?.name] || '#ffffff')}, 0.05) 100%)`,
+                      borderColor: `rgba(${hexToRgb(teamColors[driverStandings[0].Constructors[0]?.name] || '#ffffff')}, 0.3)`
+                    }}
+                  >
                     <Typography variant="h6" className={styles.leaderLabel}>
                       Driver Championship Leader
                     </Typography>
                     <Typography variant="h3" className={styles.leaderName}>
                       {driverStandings[0].Driver.givenName} {driverStandings[0].Driver.familyName}
                     </Typography>
-                    <Typography variant="h4" className={styles.leaderPoints}>
+                    <Typography 
+                      variant="h4" 
+                      className={styles.leaderPoints}
+                      style={{
+                        color: teamColors[driverStandings[0].Constructors[0]?.name] || '#ff1801'
+                      }}
+                    >
                       {driverStandings[0].points} Points
                     </Typography>
                   </Box>
                 )}
                 {!isConstructorLoading && constructorStandings && constructorStandings[0] && (
-                  <Box className={styles.constructorLeader}>
+                  <Box 
+                    className={styles.constructorLeader}
+                    style={{
+                      background: `linear-gradient(135deg, rgba(${hexToRgb(teamColors[constructorStandings[0].Constructor.name] || '#ffffff')}, 0.15) 0%, rgba(${hexToRgb(teamColors[constructorStandings[0].Constructor.name] || '#ffffff')}, 0.05) 100%)`,
+                      borderColor: `rgba(${hexToRgb(teamColors[constructorStandings[0].Constructor.name] || '#ffffff')}, 0.3)`
+                    }}
+                  >
                     <Typography variant="h6" className={styles.leaderLabel}>
                       Constructor Championship Leader
                     </Typography>
                     <Typography variant="h3" className={styles.leaderName}>
                       {constructorStandings[0].Constructor.name}
                     </Typography>
-                    <Typography variant="h4" className={styles.leaderPoints}>
+                    <Typography 
+                      variant="h4" 
+                      className={styles.leaderPoints}
+                      style={{
+                        color: teamColors[constructorStandings[0].Constructor.name] || '#ff1801'
+                      }}
+                    >
                       {constructorStandings[0].points} Points
                     </Typography>
                   </Box>
