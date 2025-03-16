@@ -17,17 +17,14 @@
 }
 
 .newsCard {
-  padding: 1.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
+  padding: 1rem;
+  background: rgba(20, 20, 20, 0.8) !important;
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .newsCard::before {
@@ -43,11 +40,7 @@
 }
 
 .newsLink:hover .newsCard {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
+  background: rgba(30, 30, 30, 0.9) !important;
   border-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -56,7 +49,7 @@
 }
 
 .newsTitle {
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff !important;
   font-size: 0.9rem !important;
   line-height: 1.4;
   font-weight: 500;
@@ -65,11 +58,11 @@
 }
 
 .newsLink:hover .newsTitle {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .newsDate {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6) !important;
   font-size: 0.75rem !important;
   display: block;
 }
