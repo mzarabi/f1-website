@@ -26,7 +26,7 @@ const DriverStandings: React.FC = () => {
             <th>Pos</th>
             <th>Driver</th>
             <th>Team</th>
-            <th>Pts</th>
+            <th>Points</th>
           </tr>
         </thead>
         <tbody>
