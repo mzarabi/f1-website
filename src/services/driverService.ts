@@ -10,13 +10,13 @@ export const getDriverList = async () => {
 };
 
 export const getDriverStandings = async () => {
-  const response = await fetch(`${API_BASE_URL}/2024/driverstandings/`);
+  const response = await fetch(`${API_BASE_URL}/2025/driverstandings/`);
   const data = await response.json();
   return data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
 };
 
 export const getConstructorStandings = async () => {
-  const response = await fetch(`${API_BASE_URL}/2024/constructorstandings/`);
+  const response = await fetch(`${API_BASE_URL}/2025/constructorstandings/`);
   const data: ConstructorStandingsResponse = await response.json();
   return data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
 }; 
