@@ -1,0 +1,17 @@
+.pageBackground {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%),
+              url('../assets/f1-hero.jpg') center/cover no-repeat fixed;
+  position: relative;
+}
+
+.pageBackground::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(180, 6, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+} 

@@ -11,6 +11,7 @@ import { DriverStanding } from '../../types/driverStandings';
 import { ConstructorStanding } from '../../types/constructorStandings';
 import F1News from '../../components/F1News/F1News';
 import styles from './HomePage.module.css';
+import sharedStyles from '../../styles/shared.module.css';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className={styles.homePage}>
+    <div className={sharedStyles.pageBackground}>
       <Box className={styles.hero}>
         <Container maxWidth="xl">
           <Grid container spacing={4}>
