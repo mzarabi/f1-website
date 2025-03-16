@@ -68,9 +68,6 @@ const HomePage: React.FC = () => {
                 <Typography variant="h1" className={styles.heroTitle}>
                   Formula 1 <span className={styles.heroYear}>{currentYear}</span>
                 </Typography>
-                <Typography variant="h2" className={styles.heroSubtitle}>
-                  Championship Tracker
-                </Typography>
                 {!isDriverLoading && driverStandings && driverStandings[0] && (
                   <Box className={styles.currentLeader}>
                     <Typography variant="h6" className={styles.leaderLabel}>
