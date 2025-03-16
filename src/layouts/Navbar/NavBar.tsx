@@ -7,7 +7,6 @@ import logo from '../../assets/logo.png';
 import styles from './NavBar.module.css';
 import MobileDrawer from './MobileDrawer';
 import DesktopNavItems from './DesktopNavItems';
-import StandingsMenu from './StandingsMenu';
 
 interface NavItem {
   label: string;
@@ -19,28 +18,13 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Schedule', path: '/schedule' },
   { label: 'Drivers', path: '/drivers' },
   { label: 'Constructors', path: '/constructors' },
+  { label: 'Standings', path: '/standings' },
 ];
-
-const STANDINGS_ITEMS: NavItem[] = [
-  { label: 'Driver Standings', path: '/drivers-standings' },
-  { label: 'Constructor Standings', path: '/constructor-standings' },
-];
-
-const ALL_NAV_ITEMS = [...NAV_ITEMS, ...STANDINGS_ITEMS];
 
 const NavBar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [standingsMenuAnchor, setStandingsMenuAnchor] = useState<HTMLElement | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-
-  const handleStandingsMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setStandingsMenuAnchor(event.currentTarget);
-  };
-
-  const handleStandingsMenuClose = () => {
-    setStandingsMenuAnchor(null);
-  };
 
   const handleDrawerToggle = (isOpen: boolean) => () => {
     setIsDrawerOpen(isOpen);
@@ -48,12 +32,7 @@ const NavBar: React.FC = () => {
 
   const navigateTo = (path: string) => {
     navigate(path);
-    handleStandingsMenuClose();
     setIsDrawerOpen(false);
-  };
-
-  const isActive = (path: string) => {
-    return location.pathname === path;
   };
 
   return (
@@ -77,7 +56,7 @@ const NavBar: React.FC = () => {
             <MobileDrawer
               isOpen={isDrawerOpen}
               onClose={handleDrawerToggle(false)}
-              items={ALL_NAV_ITEMS}
+              items={NAV_ITEMS}
               onNavigate={navigateTo}
               activeItem={location.pathname}
             />
@@ -91,15 +70,6 @@ const NavBar: React.FC = () => {
             <DesktopNavItems 
               items={NAV_ITEMS} 
               onNavigate={navigateTo} 
-              activeItem={location.pathname}
-            />
-
-            <StandingsMenu
-              items={STANDINGS_ITEMS}
-              anchorEl={standingsMenuAnchor}
-              onOpen={handleStandingsMenuOpen}
-              onClose={handleStandingsMenuClose}
-              onNavigate={navigateTo}
               activeItem={location.pathname}
             />
           </Box>

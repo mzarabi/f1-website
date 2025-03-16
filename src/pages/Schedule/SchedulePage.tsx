@@ -85,11 +85,6 @@ const SchedulePage: React.FC = () => {
                   className={`${styles.raceCard} ${styles[`race${raceStatus.charAt(0).toUpperCase() + raceStatus.slice(1)}`]}`} 
                   elevation={0}
                 >
-                  {raceStatus === 'next' && (
-                    <Typography variant="body2" className={styles.nextRaceBadge}>
-                      NEXT RACE
-                    </Typography>
-                  )}
                   <Typography variant="h4" className={styles.raceName}>
                     {race.raceName}
                   </Typography>

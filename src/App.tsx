@@ -4,15 +4,12 @@ import { CircularProgress, Box } from '@mui/material';
 import NavBar from './layouts/Navbar/NavBar';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import './index.css';
+import StandingsPage from './pages/Standings/StandingsPage';
 
-// Lazy load components
 const HomePage = React.lazy(() => import('./pages/Home/HomePage'));
 const Drivers = React.lazy(() => import('./pages/Drivers/Drivers'));
-const DriverStandingsPage = React.lazy(() => import('./pages/DriverStandings/DriverStandingsPage'));
-const ConstructorStandingsPage = React.lazy(() => import('./pages/ConstructorStandings/ConstructorStandingsPage'));
 const SchedulePage = React.lazy(() => import('./pages/Schedule/SchedulePage'));
 
-// Loading fallback component
 const LoadingFallback = () => (
   <Box
     display="flex"
@@ -34,9 +31,8 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/drivers" element={<Drivers />} />
-          <Route path="/drivers-standings" element={<DriverStandingsPage />} />
-          <Route path="/constructor-standings" element={<ConstructorStandingsPage />} />
           <Route path="/constructors" element={<div>Constructors Page</div>} />
+          <Route path="/standings" element={<StandingsPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

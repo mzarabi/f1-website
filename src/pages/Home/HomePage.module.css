@@ -113,10 +113,6 @@
   z-index: 2;
 }
 
-.quickLinks {
-  margin-bottom: 0;
-}
-
 .card {
   background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(20, 20, 20, 0.95)) !important;
   color: #ffffff !important;
