@@ -3,13 +3,12 @@ import { Box, Container, Typography, Paper, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import PersonIcon from '@mui/icons-material/Person';
-import SpeedIcon from '@mui/icons-material/Speed';
 import { useDriverStandings } from '../../hooks/useDriverStandings';
 import { useConstructorStandings } from '../../hooks/useConstructorStandings';
 import { useNextRace } from '../../hooks/useNextRace';
+import { useRaceResults } from '../../hooks/useRaceResults';
 import { DriverStanding } from '../../types/driverStandings';
 import { ConstructorStanding } from '../../types/constructorStandings';
-import F1News from '../../components/F1News/F1News';
 import styles from './HomePage.module.css';
 import sharedStyles from '../../styles/shared.module.css';
 
@@ -18,6 +17,7 @@ const HomePage: React.FC = () => {
   const { data: driverStandings, isLoading: isDriverLoading } = useDriverStandings();
   const { data: constructorStandings, isLoading: isConstructorLoading } = useConstructorStandings();
   const { data: nextRace, isLoading: isRaceLoading } = useNextRace();
+  const { data: raceResults, isLoading: isResultsLoading } = useRaceResults();
   
   const currentYear = new Date().getFullYear();
 
@@ -68,8 +68,7 @@ const HomePage: React.FC = () => {
       <Box className={styles.hero}>
         <Container maxWidth="xl">
           <Grid container spacing={4}>
-            {/* Left Section */}
-            <Grid item xs={12} md={7} className={styles.heroMainContent}>
+            <Grid item xs={12} md={6} className={styles.heroMainContent}>
               <Box className={styles.heroTextContent}>
                 <Typography variant="h1" className={styles.heroTitle}>
                   Formula 1 <span className={styles.heroYear}>{currentYear}</span>
@@ -84,6 +83,19 @@ const HomePage: React.FC = () => {
                     </Typography>
                     <Typography variant="h4" className={styles.leaderPoints}>
                       {driverStandings[0].points} Points
+                    </Typography>
+                  </Box>
+                )}
+                {!isConstructorLoading && constructorStandings && constructorStandings[0] && (
+                  <Box className={styles.constructorLeader}>
+                    <Typography variant="h6" className={styles.leaderLabel}>
+                      Constructor Championship Leader
+                    </Typography>
+                    <Typography variant="h3" className={styles.leaderName}>
+                      {constructorStandings[0].Constructor.name}
+                    </Typography>
+                    <Typography variant="h4" className={styles.leaderPoints}>
+                      {constructorStandings[0].points} Points
                     </Typography>
                   </Box>
                 )}
@@ -105,24 +117,41 @@ const HomePage: React.FC = () => {
                 )}
               </Box>
             </Grid>
-
-            {/* Right Section */}
-            <Grid item xs={12} md={5}>
-              <Box className={styles.heroNewsSection}>
-                <Paper className={styles.newsContainer}>
-                  <Typography variant="h5" className={styles.newsTitle}>
-                    Latest F1 News
+            <Grid item xs={12} md={6} className={styles.heroMainContent}>
+              {!isResultsLoading && raceResults && (
+                <Box className={styles.heroTextContent}>
+                  <Typography variant="h6" className={styles.raceLabel}>
+                    Latest Race Results
                   </Typography>
-                  <F1News />
-                </Paper>
-              </Box>
+                  <Typography variant="h3" className={styles.raceName}>
+                    {raceResults.raceName}
+                  </Typography>
+                  <Typography variant="body1" className={styles.raceLocation}>
+                    {raceResults.Circuit.circuitName}
+                  </Typography>
+                  <div className={styles.resultsList}>
+                    {raceResults.Results.slice(0, 10).map((result) => (
+                      <div key={result.position} className={styles.resultItem}>
+                        <Typography variant="h6" className={styles.position}>
+                          {result.position}
+                        </Typography>
+                        <Typography variant="body1" className={styles.name}>
+                          {result.Driver.givenName} {result.Driver.familyName}
+                        </Typography>
+                        <Typography variant="body1" className={styles.time}>
+                          {result.Time?.time || 'DNF'}
+                        </Typography>
+                      </div>
+                    ))}
+                  </div>
+                </Box>
+              )}
             </Grid>
           </Grid>
         </Container>
       </Box>
 
       <Container maxWidth="xl" className={styles.content}>
-        {/* Quick Links Section */}
         <Grid container spacing={{ xs: 3, md: 4 }} className={styles.quickLinks}>
           {quickLinks.map((link) => (
             <Grid item xs={12} md={4} key={link.path}>
@@ -140,59 +169,6 @@ const HomePage: React.FC = () => {
               </Paper>
             </Grid>
           ))}
-        </Grid>
-
-        {/* Standings Section */}
-        <Grid container spacing={{ xs: 3, md: 4 }} className={styles.standings}>
-          <Grid item xs={12} md={6}>
-            <Paper className={styles.standingsCard}>
-              <Typography variant="h5" className={styles.standingsTitle}>
-                Top 3 Drivers
-              </Typography>
-              {!isDriverLoading && driverStandings && (
-                <div className={styles.standingsList}>
-                  {driverStandings.slice(0, 3).map((driver: DriverStanding, index: number) => (
-                    <div key={driver.position} className={styles.standingsItem}>
-                      <Typography variant="h6" className={styles.position}>
-                        {index + 1}
-                      </Typography>
-                      <Typography variant="body1" className={styles.name}>
-                        {driver.Driver.givenName} {driver.Driver.familyName}
-                      </Typography>
-                      <Typography variant="body1" className={styles.points}>
-                        {driver.points} pts
-                      </Typography>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </Paper>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <Paper className={styles.standingsCard}>
-              <Typography variant="h5" className={styles.standingsTitle}>
-                Top 3 Constructors
-              </Typography>
-              {!isConstructorLoading && constructorStandings && (
-                <div className={styles.standingsList}>
-                  {constructorStandings.slice(0, 3).map((constructor: ConstructorStanding, index: number) => (
-                    <div key={constructor.position} className={styles.standingsItem}>
-                      <Typography variant="h6" className={styles.position}>
-                        {index + 1}
-                      </Typography>
-                      <Typography variant="body1" className={styles.name}>
-                        {constructor.Constructor.name}
-                      </Typography>
-                      <Typography variant="body1" className={styles.points}>
-                        {constructor.points} pts
-                      </Typography>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </Paper>
-          </Grid>
         </Grid>
       </Container>
     </div>
