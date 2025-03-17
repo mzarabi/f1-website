@@ -17,7 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'Schedule', path: '/schedule' },
   { label: 'Drivers', path: '/drivers' },
-  { label: 'Constructors', path: '/constructors' },
+  { label: 'Teams', path: '/teams' },
   { label: 'Standings', path: '/standings' },
 ];
 
