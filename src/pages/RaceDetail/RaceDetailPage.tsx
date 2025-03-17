@@ -195,16 +195,6 @@ const RaceDetailPage: React.FC = () => {
                 />
               )}
             </Box>
-            
-            <Box className={styles.circuitInfo}>
-              <Typography variant="body1">
-                {/* Circuit details would go here - you could add additional information from an API or static data */}
-                Length: 5.303 km<br />
-                Number of laps: 58<br />
-                Race distance: 307.574 km<br />
-                First Grand Prix: 1950
-              </Typography>
-            </Box>
           </Box>
         </Paper>
       </Container>
