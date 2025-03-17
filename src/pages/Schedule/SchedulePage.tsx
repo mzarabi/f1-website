@@ -1,11 +1,13 @@
 import React from 'react';
 import { Container, Typography, Grid, Box, Paper } from '@mui/material';
 import { useRaceSchedule } from '../../hooks/useRaceSchedule';
+import { useNavigate } from 'react-router-dom';
 import styles from './SchedulePage.module.css';
 import sharedStyles from '../../styles/shared.module.css';
 
 const SchedulePage: React.FC = () => {
   const { data: races, isLoading } = useRaceSchedule();
+  const navigate = useNavigate();
 
   const getRaceStatus = (raceDate: string, raceTime: string) => {
     const now = new Date();
@@ -30,20 +32,19 @@ const SchedulePage: React.FC = () => {
     return 'future';
   };
 
-  const formatRaceDate = (date: string, time: string) => {
-    const raceDate = new Date(`${date}T${time}`);
+  const formatRaceDate = (date: string) => {
+    const raceDate = new Date(date);
     
     const localDate = new Intl.DateTimeFormat('en-US', {
-      weekday: 'long',
       month: 'long',
       day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
     }).format(raceDate);
 
     return localDate;
+  };
+
+  const handleRaceClick = (round: string) => {
+    navigate(`/race/${round}`);
   };
 
   if (isLoading) {
@@ -66,9 +67,7 @@ const SchedulePage: React.FC = () => {
         </Typography>
         <Grid 
           container 
-          spacing={2}
-          justifyContent="space-between"
-          alignItems="stretch"
+          spacing={3}
         >
           {races?.map((race) => {
             const raceStatus = getRaceStatus(race.date, race.time);
@@ -76,14 +75,15 @@ const SchedulePage: React.FC = () => {
               <Grid 
                 item 
                 xs={12} 
-                sm={5.9} 
-                lg={3.9} 
-                className={styles.gridItem}
+                sm={6} 
+                md={4} 
+                lg={3} 
                 key={race.round}
               >
                 <Paper 
                   className={`${styles.raceCard} ${styles[`race${raceStatus.charAt(0).toUpperCase() + raceStatus.slice(1)}`]}`} 
                   elevation={0}
+                  onClick={() => handleRaceClick(race.round)}
                 >
                   <Typography variant="h4" className={styles.raceName}>
                     {race.raceName}
@@ -95,77 +95,13 @@ const SchedulePage: React.FC = () => {
                     {race.Circuit.Location.locality}, {race.Circuit.Location.country}
                   </Typography>
                   
-                  <Box className={styles.sessionsList}>
-                    <Box className={styles.sessionItem}>
-                      <Typography variant="body2" className={styles.sessionLabel}>
-                        Practice 1
-                      </Typography>
-                      <Typography variant="body1" className={styles.sessionTime}>
-                        {formatRaceDate(race.FirstPractice.date, race.FirstPractice.time)}
-                      </Typography>
-                    </Box>
-
-                    {race.SecondPractice && (
-                      <Box className={styles.sessionItem}>
-                        <Typography variant="body2" className={styles.sessionLabel}>
-                          Practice 2
-                        </Typography>
-                        <Typography variant="body1" className={styles.sessionTime}>
-                          {formatRaceDate(race.SecondPractice.date, race.SecondPractice.time)}
-                        </Typography>
-                      </Box>
-                    )}
-
-                    {race.ThirdPractice && (
-                      <Box className={styles.sessionItem}>
-                        <Typography variant="body2" className={styles.sessionLabel}>
-                          Practice 3
-                        </Typography>
-                        <Typography variant="body1" className={styles.sessionTime}>
-                          {formatRaceDate(race?.ThirdPractice?.date, race?.ThirdPractice?.time)}
-                        </Typography>
-                      </Box>
-                    )}
-
-                    {race.SprintQualifying && (
-                      <Box className={styles.sessionItem}>
-                        <Typography variant="body2" className={styles.sessionLabel}>
-                          Sprint Qualifying
-                        </Typography>
-                        <Typography variant="body1" className={styles.sessionTime}>
-                          {formatRaceDate(race.SprintQualifying.date, race.SprintQualifying.time)}
-                        </Typography>
-                      </Box>
-                    )}
-
-                    {race.Sprint && (
-                      <Box className={styles.sessionItem}>
-                        <Typography variant="body2" className={styles.sessionLabel}>
-                          Sprint
-                        </Typography>
-                        <Typography variant="body1" className={styles.sessionTime}>
-                          {formatRaceDate(race.Sprint.date, race.Sprint.time)}
-                        </Typography>
-                      </Box>
-                    )}
-
-                    <Box className={styles.sessionItem}>
-                      <Typography variant="body2" className={styles.sessionLabel}>
-                        Qualifying
-                      </Typography>
-                      <Typography variant="body1" className={styles.sessionTime}>
-                        {formatRaceDate(race.Qualifying.date, race.Qualifying.time)}
-                      </Typography>
-                    </Box>
-
-                    <Box className={styles.sessionItem}>
-                      <Typography variant="body2" className={styles.sessionLabel}>
-                        Race
-                      </Typography>
-                      <Typography variant="body1" className={styles.sessionTime}>
-                        {formatRaceDate(race.date, race.time)}
-                      </Typography>
-                    </Box>
+                  <Box className={styles.raceMainDate}>
+                    <Typography variant="body2" className={styles.sessionLabel}>
+                      ROUND {race.round}
+                    </Typography>
+                    <Typography variant="body1" className={styles.sessionTime}>
+                      {formatRaceDate(race.FirstPractice.date)} - {formatRaceDate(race.date)}
+                    </Typography>
                   </Box>
                 </Paper>
               </Grid>

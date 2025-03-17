@@ -1,0 +1,200 @@
+.loadingText {
+  color: #ffffff;
+}
+
+.backButton {
+  color: #ffffff !important;
+  margin-bottom: 2rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 0.5rem 1.25rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.backButton:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.raceDetailCard {
+  background: linear-gradient(145deg, rgba(25, 25, 25, 0.95), rgba(20, 20, 20, 0.95)) !important;
+  color: #ffffff !important;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+              0 12px 20px rgba(180, 6, 0, 0.15),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.racePast {
+  opacity: 0.8;
+}
+
+.raceNext {
+  background: linear-gradient(145deg, rgba(35, 35, 35, 0.98), rgba(25, 25, 25, 0.98)) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+              0 12px 28px rgba(255, 0, 0, 0.2),
+              inset 0 0 0 2px rgba(255, 0, 0, 0.2);
+}
+
+.raceFuture {
+  opacity: 0.95;
+}
+
+.raceHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.raceName {
+  font-size: 3rem !important;
+  font-weight: 700 !important;
+  color: #ff1801 !important;
+  margin-bottom: 1rem !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.circuitName {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.location {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 1.2rem !important;
+}
+
+.sectionTitle {
+  font-size: 2rem !important;
+  font-weight: 600 !important;
+  color: #ffffff;
+  margin-bottom: 2rem !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.sessionContainer {
+  margin-bottom: 3rem;
+}
+
+.sessionCard {
+  background: linear-gradient(145deg, rgba(35, 35, 35, 0.8), rgba(25, 25, 25, 0.8)) !important;
+  padding: 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sessionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.raceSession {
+  background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(30, 30, 30, 0.9)) !important;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.15);
+  border: 1px solid rgba(255, 24, 1, 0.2);
+}
+
+.sessionTitle {
+  color: #ff1801 !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.sessionDate {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.circuitInfoContainer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.circuitInfo {
+  background: rgba(30, 30, 30, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.circuitMapContainer {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  background: rgba(20, 20, 20, 0.5);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.circuitMap {
+  max-width: 100%;
+  height: auto;
+  max-height: 350px;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  background-color: #ffffff;
+}
+
+@media (max-width: 960px) {
+  .raceDetailCard {
+    padding: 1.5rem;
+  }
+  
+  .raceName {
+    font-size: 2.5rem !important;
+  }
+  
+  .circuitName {
+    font-size: 1.5rem !important;
+  }
+  
+  .location {
+    font-size: 1.1rem !important;
+  }
+  
+  .sectionTitle {
+    font-size: 1.7rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .raceDetailCard {
+    padding: 1.25rem;
+  }
+  
+  .raceName {
+    font-size: 2rem !important;
+  }
+  
+  .circuitName {
+    font-size: 1.3rem !important;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .sessionCard {
+    padding: 1rem;
+  }
+  
+  .circuitMapContainer {
+    padding: 1rem;
+  }
+  
+  .circuitMap {
+    max-height: 250px;
+  }
+} 
