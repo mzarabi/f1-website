@@ -114,88 +114,78 @@ const RaceDetailPage: React.FC = () => {
             </Typography>
           </Box>
 
-          <Box className={styles.sessionContainer}>
-            <Typography variant="h4" className={styles.sectionTitle}>Race Weekend Schedule</Typography>
-            
-            <Grid container spacing={3}>
-              {race.FirstPractice && (
-                <Grid item xs={12} sm={6} md={4}>
+          <Grid container spacing={4}className={styles.raceContentContainer}>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h4" className={styles.sectionTitle}>Race Weekend Schedule</Typography>
+              
+              <Box className={styles.sessionsListContainer}>
+                {race.FirstPractice && (
                   <Paper className={styles.sessionCard}>
                     <Typography variant="h6" className={styles.sessionTitle}>Practice 1</Typography>
                     <Typography className={styles.sessionDate}>{formatRaceDate(race.FirstPractice.date, race.FirstPractice.time)}</Typography>
                   </Paper>
-                </Grid>
-              )}
+                )}
 
-              {race.SecondPractice && (
-                <Grid item xs={12} sm={6} md={4}>
+                {race.SecondPractice && (
                   <Paper className={styles.sessionCard}>
                     <Typography variant="h6" className={styles.sessionTitle}>Practice 2</Typography>
                     <Typography className={styles.sessionDate}>{formatRaceDate(race.SecondPractice.date, race.SecondPractice.time)}</Typography>
                   </Paper>
-                </Grid>
-              )}
+                )}
 
-              {race.ThirdPractice && (
-                <Grid item xs={12} sm={6} md={4}>
+                {race.ThirdPractice && (
                   <Paper className={styles.sessionCard}>
                     <Typography variant="h6" className={styles.sessionTitle}>Practice 3</Typography>
                     <Typography className={styles.sessionDate}>{formatRaceDate(race.ThirdPractice.date, race.ThirdPractice.time)}</Typography>
                   </Paper>
-                </Grid>
-              )}
+                )}
 
-              {race.SprintQualifying && (
-                <Grid item xs={12} sm={6} md={4}>
+                {race.SprintQualifying && (
                   <Paper className={styles.sessionCard}>
                     <Typography variant="h6" className={styles.sessionTitle}>Sprint Qualifying</Typography>
                     <Typography className={styles.sessionDate}>{formatRaceDate(race.SprintQualifying.date, race.SprintQualifying.time)}</Typography>
                   </Paper>
-                </Grid>
-              )}
+                )}
 
-              {race.Sprint && (
-                <Grid item xs={12} sm={6} md={4}>
+                {race.Sprint && (
                   <Paper className={styles.sessionCard}>
                     <Typography variant="h6" className={styles.sessionTitle}>Sprint</Typography>
                     <Typography className={styles.sessionDate}>{formatRaceDate(race.Sprint.date, race.Sprint.time)}</Typography>
                   </Paper>
-                </Grid>
-              )}
+                )}
 
-              <Grid item xs={12} sm={6} md={4}>
                 <Paper className={styles.sessionCard}>
                   <Typography variant="h6" className={styles.sessionTitle}>Qualifying</Typography>
                   <Typography className={styles.sessionDate}>{formatRaceDate(race.Qualifying.date, race.Qualifying.time)}</Typography>
                 </Paper>
-              </Grid>
 
-              <Grid item xs={12} sm={6} md={4}>
                 <Paper className={`${styles.sessionCard} ${styles.raceSession}`}>
                   <Typography variant="h6" className={styles.sessionTitle}>Race</Typography>
                   <Typography className={styles.sessionDate}>{formatRaceDate(race.date, race.time)}</Typography>
                 </Paper>
-              </Grid>
+              </Box>
             </Grid>
-          </Box>
 
-          <Box className={styles.circuitInfoContainer}>
-            <Typography variant="h4" className={styles.sectionTitle}>Circuit Information</Typography>
-            
-            <Box className={styles.circuitMapContainer}>
-              {race.Circuit.circuitId && (
-                <img 
-                  src={`/assets/circuits/${race.Circuit.circuitId}.png`} 
-                  alt={`${race.Circuit.circuitName} layout`}
-                  className={styles.circuitMap}
-                  onError={(e) => {
-                    // Fallback if image doesn't exist
-                    e.currentTarget.src = '/assets/circuits/default-circuit.png';
-                  }}
-                />
-              )}
-            </Box>
-          </Box>
+            {/* Right side - Circuit Info and Map */}
+            <Grid item xs={12} md={6}>
+              <Typography variant="h4" className={styles.sectionTitle}>Circuit Information</Typography>
+              
+              <Box className={styles.circuitMapContainer}>
+                {race.Circuit.circuitId && (
+                  <img 
+                    src={`/assets/circuits/${race.Circuit.circuitId}.png`} 
+                    alt={`${race.Circuit.circuitName} layout`}
+                    className={styles.circuitMap}
+                    onError={(e) => {
+                      // Fallback if image doesn't exist
+                      e.currentTarget.src = '/assets/circuits/default-circuit.png';
+                    }}
+                  />
+                )}
+              </Box>
+              
+            </Grid>
+          </Grid>
         </Paper>
       </Container>
     </div>
