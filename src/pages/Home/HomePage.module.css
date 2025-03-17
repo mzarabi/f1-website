@@ -346,14 +346,6 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.resultItem:hover {
-  transform: translateX(8px);
-  background: linear-gradient(145deg, rgba(28, 28, 28, 0.95), rgba(22, 22, 22, 0.95));
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2),
-              0 8px 16px rgba(180, 6, 0, 0.1);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
 .resultItem .position {
   font-size: 1.4rem !important;
   font-weight: 800 !important;
