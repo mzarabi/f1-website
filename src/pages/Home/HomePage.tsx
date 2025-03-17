@@ -17,6 +17,7 @@ const HomePage: React.FC = () => {
   const { data: raceResults, isLoading: isResultsLoading } = useRaceResults();
   
   const currentYear = new Date().getFullYear();
+  const isLoading = isDriverLoading || isConstructorLoading || isRaceLoading || isResultsLoading;
 
   const formatRaceDate = (date: string, time: string) => {
     const raceDate = new Date(`${date}T${time}`);
@@ -46,6 +47,10 @@ const HomePage: React.FC = () => {
     return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`;
   };
 
+  if (isLoading || !driverStandings || !constructorStandings || !nextRace || !raceResults) {
+    return null;
+  }
+
   return (
     <div className={sharedStyles.pageBackground}>
       <Box className={styles.hero}>
@@ -56,7 +61,7 @@ const HomePage: React.FC = () => {
                 <Typography variant="h1" className={styles.heroTitle}>
                   Formula 1 <span className={styles.heroYear}>{currentYear}</span>
                 </Typography>
-                {!isDriverLoading && driverStandings && driverStandings[0] && (
+                {driverStandings[0] && (
                   <Box 
                     className={styles.currentLeader}
                     style={{
@@ -81,7 +86,7 @@ const HomePage: React.FC = () => {
                     </Typography>
                   </Box>
                 )}
-                {!isConstructorLoading && constructorStandings && constructorStandings[0] && (
+                {constructorStandings[0] && (
                   <Box 
                     className={styles.constructorLeader}
                     style={{
@@ -106,126 +111,122 @@ const HomePage: React.FC = () => {
                     </Typography>
                   </Box>
                 )}
-                {!isRaceLoading && nextRace && (
-                  <Box className={styles.nextRace}>
-                    <Typography variant="h6" className={styles.raceLabel}>
-                      Next Race
-                    </Typography>
-                    <Typography variant="h3" className={styles.raceName}>
-                      {nextRace.raceName}
-                    </Typography>
-                    <Typography variant="body1" className={styles.raceLocation}>
-                      {nextRace.Circuit.Location.locality}, {nextRace.Circuit.Location.country}
-                    </Typography>
-                    <Box className={styles.raceTimes}>
-                      {nextRace.FirstPractice && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Practice 1
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.FirstPractice.date, nextRace.FirstPractice.time)}
-                          </Typography>
-                        </Box>
-                      )}
-
-                      {nextRace.SecondPractice && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Practice 2
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.SecondPractice.date, nextRace.SecondPractice.time)}
-                          </Typography>
-                        </Box>
-                      )}
-
-                      {nextRace.ThirdPractice && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Practice 3
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.ThirdPractice.date, nextRace.ThirdPractice.time)}
-                          </Typography>
-                        </Box>
-                      )}
-
-                      {nextRace.SprintQualifying && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Sprint Qualifying
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.SprintQualifying.date, nextRace.SprintQualifying.time)}
-                          </Typography>
-                        </Box>
-                      )}
-
-                      {nextRace.Sprint && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Sprint
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.Sprint.date, nextRace.Sprint.time)}
-                          </Typography>
-                        </Box>
-                      )}
-
-                      {nextRace.Qualifying && (
-                        <Box>
-                          <Typography variant="body2" className={styles.timeLabel}>
-                            Qualifying
-                          </Typography>
-                          <Typography variant="h4" className={styles.raceDate}>
-                            {formatRaceDate(nextRace.Qualifying.date, nextRace.Qualifying.time)}
-                          </Typography>
-                        </Box>
-                      )}
-
+                <Box className={styles.nextRace}>
+                  <Typography variant="h6" className={styles.raceLabel}>
+                    Next Race
+                  </Typography>
+                  <Typography variant="h3" className={styles.raceName}>
+                    {nextRace.raceName}
+                  </Typography>
+                  <Typography variant="body1" className={styles.raceLocation}>
+                    {nextRace.Circuit.Location.locality}, {nextRace.Circuit.Location.country}
+                  </Typography>
+                  <Box className={styles.raceTimes}>
+                    {nextRace.FirstPractice && (
                       <Box>
                         <Typography variant="body2" className={styles.timeLabel}>
-                          Race
+                          Practice 1
                         </Typography>
                         <Typography variant="h4" className={styles.raceDate}>
-                          {formatRaceDate(nextRace.date, nextRace.time)}
+                          {formatRaceDate(nextRace.FirstPractice.date, nextRace.FirstPractice.time)}
                         </Typography>
                       </Box>
+                    )}
+
+                    {nextRace.SecondPractice && (
+                      <Box>
+                        <Typography variant="body2" className={styles.timeLabel}>
+                          Practice 2
+                        </Typography>
+                        <Typography variant="h4" className={styles.raceDate}>
+                          {formatRaceDate(nextRace.SecondPractice.date, nextRace.SecondPractice.time)}
+                        </Typography>
+                      </Box>
+                    )}
+
+                    {nextRace.ThirdPractice && (
+                      <Box>
+                        <Typography variant="body2" className={styles.timeLabel}>
+                          Practice 3
+                        </Typography>
+                        <Typography variant="h4" className={styles.raceDate}>
+                          {formatRaceDate(nextRace.ThirdPractice.date, nextRace.ThirdPractice.time)}
+                        </Typography>
+                      </Box>
+                    )}
+
+                    {nextRace.SprintQualifying && (
+                      <Box>
+                        <Typography variant="body2" className={styles.timeLabel}>
+                          Sprint Qualifying
+                        </Typography>
+                        <Typography variant="h4" className={styles.raceDate}>
+                          {formatRaceDate(nextRace.SprintQualifying.date, nextRace.SprintQualifying.time)}
+                        </Typography>
+                      </Box>
+                    )}
+
+                    {nextRace.Sprint && (
+                      <Box>
+                        <Typography variant="body2" className={styles.timeLabel}>
+                          Sprint
+                        </Typography>
+                        <Typography variant="h4" className={styles.raceDate}>
+                          {formatRaceDate(nextRace.Sprint.date, nextRace.Sprint.time)}
+                        </Typography>
+                      </Box>
+                    )}
+
+                    {nextRace.Qualifying && (
+                      <Box>
+                        <Typography variant="body2" className={styles.timeLabel}>
+                          Qualifying
+                        </Typography>
+                        <Typography variant="h4" className={styles.raceDate}>
+                          {formatRaceDate(nextRace.Qualifying.date, nextRace.Qualifying.time)}
+                        </Typography>
+                      </Box>
+                    )}
+
+                    <Box>
+                      <Typography variant="body2" className={styles.timeLabel}>
+                        Race
+                      </Typography>
+                      <Typography variant="h4" className={styles.raceDate}>
+                        {formatRaceDate(nextRace.date, nextRace.time)}
+                      </Typography>
                     </Box>
                   </Box>
-                )}
+                </Box>
               </Box>
             </Grid>
             <Grid item xs={12} md={6} className={styles.heroMainContent}>
-              {!isResultsLoading && raceResults && (
-                <Box className={styles.heroTextContent}>
-                  <Typography variant="h6" className={styles.raceLabel}>
-                    Latest Race Results
-                  </Typography>
-                  <Typography variant="h3" className={styles.raceName}>
-                    {raceResults.raceName}
-                  </Typography>
-                  <Typography variant="body1" className={styles.raceLocation}>
-                    {raceResults.Circuit.circuitName}
-                  </Typography>
-                  <div className={styles.resultsList}>
-                    {raceResults.Results.slice(0, 10).map((result) => (
-                      <div key={result.position} className={styles.resultItem}>
-                        <Typography variant="h6" className={styles.position}>
-                          {result.position}
-                        </Typography>
-                        <Typography variant="body1" className={styles.name}>
-                          {result.Driver.givenName} {result.Driver.familyName}
-                        </Typography>
-                        <Typography variant="body1" className={styles.time}>
-                          {result.Time?.time || 'DNF'}
-                        </Typography>
-                      </div>
-                    ))}
-                  </div>
-                </Box>
-              )}
+              <Box className={styles.heroTextContent}>
+                <Typography variant="h6" className={styles.raceLabel}>
+                  Latest Race Results
+                </Typography>
+                <Typography variant="h3" className={styles.raceName}>
+                  {raceResults.raceName}
+                </Typography>
+                <Typography variant="body1" className={styles.raceLocation}>
+                  {raceResults.Circuit.circuitName}
+                </Typography>
+                <div className={styles.resultsList}>
+                  {raceResults.Results.slice(0, 10).map((result) => (
+                    <div key={result.position} className={styles.resultItem}>
+                      <Typography variant="h6" className={styles.position}>
+                        {result.position}
+                      </Typography>
+                      <Typography variant="body1" className={styles.name}>
+                        {result.Driver.givenName} {result.Driver.familyName}
+                      </Typography>
+                      <Typography variant="body1" className={styles.time}>
+                        {result.Time?.time || 'DNF'}
+                      </Typography>
+                    </div>
+                  ))}
+                </div>
+              </Box>
             </Grid>
           </Grid>
         </Container>

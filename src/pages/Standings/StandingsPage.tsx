@@ -56,7 +56,7 @@ const StandingsPage: React.FC = () => {
 
   return (
     <div className={sharedStyles.pageBackground}>
-      <Container maxWidth="xl" sx={{ py: 4 }}>
+      <Container className={styles.container} maxWidth="xl" sx={{ py: 4 }}>
         <Typography variant="h2" className={styles.pageTitle}>
           2025 Championship Standings
         </Typography>

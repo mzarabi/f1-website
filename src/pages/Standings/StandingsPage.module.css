@@ -94,6 +94,10 @@
   text-align: center;
 }
 
+.container {
+  padding-left: 0 !important;
+}
+
 @media (max-width: 600px) {
   .pageTitle {
     font-size: 2rem !important;
