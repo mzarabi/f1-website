@@ -4,12 +4,23 @@ import LazyImage from '../common/LazyImage';
 import { Skeleton, Grid } from '@mui/material';
 import styles from './ConstructorGrid.module.css';
 import teamPhotos from '../../data/teamPhotos';
+import teamLogos from '../../data/teamLogos';
+import { teamColors } from '../../utils/teamColors';
 
 const ConstructorGrid: React.FC = () => {
   const { data: constructors, isLoading, error } = useConstructors();
 
   const getTeamImage = (constructorId: string) => {
     return teamPhotos[constructorId] || '';
+  };
+
+  const getTeamLogo = (constructorId: string) => {
+    const logoKey = constructorId.toLowerCase();
+    return teamLogos[logoKey] || '';
+  };
+
+  const getTeamColor = (constructorName: string) => {
+    return teamColors[constructorName] || '#333333';
   };
 
   if (isLoading) {
@@ -51,9 +62,18 @@ const ConstructorGrid: React.FC = () => {
                 alt={constructor.name}
                 className={styles.constructorImage}
               />
-              <div className={styles.constructorInfo}>
-                <div className={styles.constructorName}>{constructor.name}</div>
-                <div className={styles.constructorNationality}>{constructor.nationality}</div>
+              <div className={styles.constructorInfo} style={{ backgroundColor: getTeamColor(constructor.name) }}>
+                <div 
+                  className={styles.constructorNameContainer}
+                  
+                >
+                  <div className={styles.constructorName}>{constructor.name}</div>
+                  <img 
+                    src={getTeamLogo(constructor.constructorId)} 
+                    alt={`${constructor.name} logo`} 
+                    className={styles.constructorLogo} 
+                  />
+                </div>
               </div>
             </div>
           </Grid>
