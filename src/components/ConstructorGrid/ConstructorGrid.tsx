@@ -56,7 +56,7 @@ const ConstructorGrid: React.FC = () => {
       <Grid container spacing={4}>
         {constructors.map((constructor) => (
           <Grid item xs={12} sm={12} md={6} key={constructor.constructorId}>
-            <div className={styles.constructorCard}>
+            <div className={styles.constructorCard} style={{ backgroundColor: getTeamColor(constructor.name)}}>
               <LazyImage
                 src={getTeamImage(constructor.constructorId)}
                 alt={constructor.name}
