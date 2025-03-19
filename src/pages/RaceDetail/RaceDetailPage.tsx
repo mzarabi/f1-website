@@ -14,11 +14,6 @@ import { useRaceSchedule } from '../../hooks/useRaceSchedule';
 import styles from './RaceDetailPage.module.css';
 import sharedStyles from '../../styles/shared.module.css';
 
-interface RaceSession {
-  date: string;
-  time: string;
-}
-
 const RaceDetailPage: React.FC = () => {
   const { round } = useParams<{ round: string }>();
   const navigate = useNavigate();
@@ -58,7 +53,6 @@ const RaceDetailPage: React.FC = () => {
       return 'past';
     }
     
-    // Find the next race
     const futureRaces = races?.filter(race => {
       const raceDT = new Date(`${race.date}T${race.time}`);
       return raceDT > now;
@@ -114,7 +108,7 @@ const RaceDetailPage: React.FC = () => {
             </Typography>
           </Box>
 
-          <Grid container spacing={4}className={styles.raceContentContainer}>
+          <Grid container spacing={4} className={styles.raceContentContainer}>
             <Grid item xs={12} md={6}>
               <Typography variant="h4" className={styles.sectionTitle}>Race Weekend Schedule</Typography>
               
@@ -166,7 +160,6 @@ const RaceDetailPage: React.FC = () => {
               </Box>
             </Grid>
 
-            {/* Right side - Circuit Info and Map */}
             <Grid item xs={12} md={6}>
               <Typography variant="h4" className={styles.sectionTitle}>Circuit Information</Typography>
               
@@ -177,13 +170,11 @@ const RaceDetailPage: React.FC = () => {
                     alt={`${race.Circuit.circuitName} layout`}
                     className={styles.circuitMap}
                     onError={(e) => {
-                      // Fallback if image doesn't exist
                       e.currentTarget.src = '/assets/circuits/default-circuit.png';
                     }}
                   />
                 )}
               </Box>
-              
             </Grid>
           </Grid>
         </Paper>

@@ -4,7 +4,7 @@ import DriverGrid from '../../components/DriverGrid/DriverGrid';
 import styles from './Drivers.module.css';
 import sharedStyles from '../../styles/shared.module.css';
 
-const Drivers: React.FC = () => {
+const DriversPage: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -19,4 +19,4 @@ const Drivers: React.FC = () => {
   );
 };
 
-export default Drivers; 
+export default DriversPage; 

@@ -29,7 +29,7 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  min-height: 200px;
+  min-height: 230px;
 }
 
 .raceCard:hover {

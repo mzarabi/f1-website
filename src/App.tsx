@@ -7,9 +7,10 @@ import './index.css';
 import StandingsPage from './pages/Standings/StandingsPage';
 
 const HomePage = React.lazy(() => import('./pages/Home/HomePage'));
-const Drivers = React.lazy(() => import('./pages/Drivers/Drivers'));
+const DriversPage = React.lazy(() => import('./pages/Drivers/DriversPage'));
 const SchedulePage = React.lazy(() => import('./pages/Schedule/SchedulePage'));
 const RaceDetailPage = React.lazy(() => import('./pages/RaceDetail/RaceDetailPage'));
+const ConstructorsPage = React.lazy(() => import('./pages/Constructors/ConstructorsPage'));
 
 const LoadingFallback = () => (
   <Box
@@ -32,8 +33,8 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/schedule" element={<SchedulePage />} />
           <Route path="/race/:round" element={<RaceDetailPage />} />
-          <Route path="/drivers" element={<Drivers />} />
-          <Route path="/teams" element={<div>Constructors Page</div>} />
+          <Route path="/drivers" element={<DriversPage />} />
+          <Route path="/teams" element={<ConstructorsPage />} />
           <Route path="/standings" element={<StandingsPage />} />
         </Routes>
       </Suspense>

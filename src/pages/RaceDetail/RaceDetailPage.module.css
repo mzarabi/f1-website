@@ -76,10 +76,6 @@
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.sessionContainer {
-  margin-bottom: 0;
-}
-
 .sessionsListContainer {
   display: flex;
   flex-direction: column;
@@ -114,19 +110,6 @@
   background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(30, 30, 30, 0.9)) !important;
   box-shadow: 0 4px 12px rgba(255, 0, 0, 0.15);
   border: 1px solid rgba(255, 24, 1, 0.2);
-}
-
-.circuitInfoContainer {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.circuitInfo {
-  background: rgba(30, 30, 30, 0.5);
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin-top: 1rem;
 }
 
 .circuitMapContainer {
@@ -215,4 +198,4 @@
   .circuitMap {
     max-height: 250px;
   }
-} 
+}
