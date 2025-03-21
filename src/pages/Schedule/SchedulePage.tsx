@@ -77,7 +77,7 @@ const SchedulePage: React.FC = () => {
                 xs={12} 
                 sm={6} 
                 md={4} 
-                lg={3} 
+                lg={4} 
                 key={race.round}
               >
                 <Paper 
