@@ -5,6 +5,11 @@ interface Driver {
   familyName: string;
 }
 
+interface Constructor {
+  constructorId: string;
+  name: string;
+}
+
 interface Time {
   time: string;
 }
@@ -12,6 +17,7 @@ interface Time {
 interface Result {
   position: string;
   Driver: Driver;
+  Constructor: Constructor;
   Time: Time;
 }
 

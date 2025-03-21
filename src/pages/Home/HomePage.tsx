@@ -108,9 +108,6 @@ const HomePage: React.FC = () => {
                   <Typography variant="h3" className={styles.raceName}>
                     {nextRace.raceName}
                   </Typography>
-                  <Typography variant="body1" className={styles.raceLocation}>
-                    {nextRace.Circuit.Location.locality}, {nextRace.Circuit.Location.country}
-                  </Typography>
                   <Box className={styles.raceTimes}>
                     {nextRace.FirstPractice && (
                       <Box>
@@ -198,12 +195,15 @@ const HomePage: React.FC = () => {
                 <Typography variant="h3" className={styles.raceName}>
                   {raceResults.raceName}
                 </Typography>
-                <Typography variant="body1" className={styles.raceLocation}>
-                  {raceResults.Circuit.circuitName}
-                </Typography>
                 <div className={styles.resultsList}>
                   {raceResults.Results.slice(0, 10).map((result) => (
-                    <div key={result.position} className={styles.resultItem}>
+                    <div 
+                      key={result.position} 
+                      className={styles.resultItem}
+                      style={{
+                        borderLeft: `4px solid ${teamColors[result.Constructor.name] || '#ff1801'}`
+                      }}
+                    >
                       <Typography variant="h6" className={styles.position}>
                         {result.position}
                       </Typography>
