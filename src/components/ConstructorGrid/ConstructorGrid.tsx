@@ -23,6 +23,10 @@ const ConstructorGrid: React.FC = () => {
     return teamColors[constructorName] || '#333333';
   };
 
+  const formatTeamName = (name: string) => {
+    return name.replace(' F1 Team', '');
+  };
+
   if (isLoading) {
     return (
       <div className={styles.gridContainer}>
@@ -67,7 +71,7 @@ const ConstructorGrid: React.FC = () => {
                   className={styles.constructorNameContainer}
                   
                 >
-                  <div className={styles.constructorName}>{constructor.name}</div>
+                  <div className={styles.constructorName}>{formatTeamName(constructor.name)}</div>
                   <img 
                     src={getTeamLogo(constructor.constructorId)} 
                     alt={`${constructor.name} logo`} 

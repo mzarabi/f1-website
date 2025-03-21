@@ -16,7 +16,6 @@ const HomePage: React.FC = () => {
   const { data: nextRace, isLoading: isRaceLoading } = useNextRace();
   const { data: raceResults, isLoading: isResultsLoading } = useRaceResults();
   
-  const currentYear = new Date().getFullYear();
   const isLoading = isDriverLoading || isConstructorLoading || isRaceLoading || isResultsLoading;
 
   const formatRaceDate = (date: string, time: string) => {
@@ -35,12 +34,6 @@ const HomePage: React.FC = () => {
     return localDate;
   };
 
-  const handleNavigation = (path: string) => {
-    window.scrollTo(0, 0);
-    navigate(path);
-  };
-
-  // Helper function to convert hex color to RGB
   const hexToRgb = (hex: string): string => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     if (!result) return '255, 255, 255';
@@ -58,9 +51,6 @@ const HomePage: React.FC = () => {
           <Grid container spacing={4}>
             <Grid item xs={12} md={6} className={styles.heroMainContent}>
               <Box className={styles.heroTextContent}>
-                <Typography variant="h1" className={styles.heroTitle}>
-                  Formula 1 <span className={styles.heroYear}>{currentYear}</span>
-                </Typography>
                 {driverStandings[0] && (
                   <Box 
                     className={styles.currentLeader}
@@ -113,7 +103,7 @@ const HomePage: React.FC = () => {
                 )}
                 <Box className={styles.nextRace}>
                   <Typography variant="h6" className={styles.raceLabel}>
-                    Next Race
+                    Next up
                   </Typography>
                   <Typography variant="h3" className={styles.raceName}>
                     {nextRace.raceName}
