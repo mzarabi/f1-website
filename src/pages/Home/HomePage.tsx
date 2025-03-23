@@ -40,6 +40,14 @@ const HomePage: React.FC = () => {
     return `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`;
   };
 
+  const goToStandings = () => {
+    navigate('/standings');
+  };
+  
+  const goToRace = (round: string) => {
+    navigate(`/race/${round}`);
+  };
+
   if (isLoading || !driverStandings || !constructorStandings || !nextRace || !raceResults) {
     return null;
   }
@@ -58,6 +66,7 @@ const HomePage: React.FC = () => {
                       background: `linear-gradient(135deg, rgba(${hexToRgb(teamColors[driverStandings[0].Constructors[0]?.name] || '#ffffff')}, 0.15) 0%, rgba(${hexToRgb(teamColors[driverStandings[0].Constructors[0]?.name] || '#ffffff')}, 0.05) 100%)`,
                       borderColor: `rgba(${hexToRgb(teamColors[driverStandings[0].Constructors[0]?.name] || '#ffffff')}, 0.3)`
                     }}
+                    onClick={goToStandings}
                   >
                     <Typography variant="h6" className={styles.leaderLabel}>
                       Driver Championship Leader
@@ -83,6 +92,7 @@ const HomePage: React.FC = () => {
                       background: `linear-gradient(135deg, rgba(${hexToRgb(teamColors[constructorStandings[0].Constructor.name] || '#ffffff')}, 0.15) 0%, rgba(${hexToRgb(teamColors[constructorStandings[0].Constructor.name] || '#ffffff')}, 0.05) 100%)`,
                       borderColor: `rgba(${hexToRgb(teamColors[constructorStandings[0].Constructor.name] || '#ffffff')}, 0.3)`
                     }}
+                    onClick={goToStandings}
                   >
                     <Typography variant="h6" className={styles.leaderLabel}>
                       Constructor Championship Leader
@@ -101,7 +111,10 @@ const HomePage: React.FC = () => {
                     </Typography>
                   </Box>
                 )}
-                <Box className={styles.nextRace}>
+                <Box 
+                  className={styles.nextRace}
+                  onClick={() => goToRace(nextRace.round)}
+                >
                   <Typography variant="h6" className={styles.raceLabel}>
                     Next up
                   </Typography>
