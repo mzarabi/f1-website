@@ -1,12 +1,14 @@
 import React from 'react';
-import { Container, Typography, Grid, Box, Paper } from '@mui/material';
+import { Container, Typography, Grid, Box, Paper, Chip } from '@mui/material';
 import { useRaceSchedule } from '../../hooks/useRaceSchedule';
+import { useRaceWinners } from '../../hooks/useRaceWinners';
 import { useNavigate } from 'react-router-dom';
 import styles from './SchedulePage.module.css';
 import sharedStyles from '../../styles/shared.module.css';
 
 const SchedulePage: React.FC = () => {
-  const { data: races, isLoading } = useRaceSchedule();
+  const { data: races, isLoading: isScheduleLoading } = useRaceSchedule();
+  const { data: raceWinners, isLoading: isWinnersLoading } = useRaceWinners();
   const navigate = useNavigate();
 
   const getRaceStatus = (raceDate: string, raceTime: string) => {
@@ -43,11 +45,16 @@ const SchedulePage: React.FC = () => {
     return localDate;
   };
 
+  // Get race winner information by round
+  const getRaceWinner = (round: string) => {
+    return raceWinners.find(winner => winner.round === round);
+  };
+
   const handleRaceClick = (round: string) => {
     navigate(`/race/${round}`);
   };
 
-  if (isLoading) {
+  if (isScheduleLoading) {
     return (
       <div className={sharedStyles.pageBackground}>
         <Container maxWidth="xl">
@@ -71,6 +78,8 @@ const SchedulePage: React.FC = () => {
         >
           {races?.map((race) => {
             const raceStatus = getRaceStatus(race.date, race.time);
+            const winner = raceStatus === 'past' ? getRaceWinner(race.round) : null;
+            
             return (
               <Grid 
                 item 
@@ -94,6 +103,24 @@ const SchedulePage: React.FC = () => {
                   <Typography variant="body1" className={styles.location}>
                     {race.Circuit.Location.locality}, {race.Circuit.Location.country}
                   </Typography>
+                  
+                  {winner && (
+                    <Box className={styles.winnerInfo}>
+                      <Chip 
+                        label={`Winner: ${winner.winnerName}`} 
+                        className={styles.winnerChip}
+                        sx={{ 
+                          my: 1,
+                          backgroundColor: 'rgba(255, 24, 1, 0.9)',
+                          color: '#ffffff',
+                          fontWeight: 'bold',
+                          '& .MuiChip-label': {
+                            padding: '0 12px',
+                          }
+                        }}
+                      />
+                    </Box>
+                  )}
                   
                   <Box className={styles.raceMainDate}>
                     <Typography variant="body2" className={styles.sessionLabel}>

@@ -125,6 +125,16 @@
   font-weight: 500 !important;
 }
 
+.winnerInfo {
+  margin: 8px 0;
+  display: flex;
+  flex-grow: 1;
+}
+
+.winnerChip {
+  margin: 8px 0;
+}
+
 @media (max-width: 960px) {
   .pageTitle {
     margin: 1rem 0 1.5rem !important;
