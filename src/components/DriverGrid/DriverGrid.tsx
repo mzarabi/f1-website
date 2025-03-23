@@ -1,12 +1,12 @@
 import React from 'react';
-import { useDrivers } from '../../hooks/useDrivers';
+import { useSortedDrivers } from '../../hooks/useSortedDrivers';
 import LazyImage from '../common/LazyImage';
 import { Skeleton, Grid } from '@mui/material';
 import styles from './DriverGrid.module.css';
 import driverPhotos from '../../data/driverPhotos';
 
 const DriverGrid: React.FC = () => {
-  const { data: drivers, isLoading, error } = useDrivers();
+  const { data: drivers, isLoading, error } = useSortedDrivers();
 
   const getDriverImage = (driverId: string) => {
     return driverPhotos[driverId] || '';

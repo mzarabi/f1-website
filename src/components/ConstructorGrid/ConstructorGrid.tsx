@@ -1,5 +1,5 @@
 import React from 'react';
-import { useConstructors } from '../../hooks/useConstructors';
+import { useSortedConstructors } from '../../hooks/useSortedConstructors';
 import LazyImage from '../common/LazyImage';
 import { Skeleton, Grid } from '@mui/material';
 import styles from './ConstructorGrid.module.css';
@@ -8,7 +8,7 @@ import teamLogos from '../../data/teamLogos';
 import { teamColors } from '../../utils/teamColors';
 
 const ConstructorGrid: React.FC = () => {
-  const { data: constructors, isLoading, error } = useConstructors();
+  const { data: constructors, isLoading, error } = useSortedConstructors();
 
   const getTeamImage = (constructorId: string) => {
     return teamPhotos[constructorId] || '';

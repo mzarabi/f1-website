@@ -40,7 +40,8 @@ interface RaceData {
 const fetchRaceResults = async (): Promise<Race | null> => {
   const response = await fetch('https://api.jolpi.ca/ergast/f1/2025/results/');
   const data: RaceData = await response.json();
-  return data.MRData.RaceTable.Races[0] || null;
+  const races = data.MRData.RaceTable.Races;
+  return races.length > 0 ? races[races.length - 1] : null;
 };
 
 export const useRaceResults = () => {
